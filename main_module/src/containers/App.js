@@ -4,12 +4,30 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log('[App,js] constructor');
+  }
+
   state = {
     persons: [
       { id: 1, name: 'random 1', age: '10' },
       { id: 2, name: 'random 2', age: '20' },
       { id: 3, name: 'random 3', age: '30' }
     ]
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerviedStateFromProps', props);
+    return state;
+  }
+
+  conponentWillMount() {
+    console.log('[App.js] componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
   }
 
   deletePersonHandler = (index) => {
@@ -44,6 +62,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('[App.js] render');
     let persons = null;
     
     if (this.state.showPersons) {
@@ -57,7 +76,8 @@ class App extends Component {
   
     return (
       <div className={classes.App}>
-        <Cockpit 
+        <Cockpit
+          title={this.props.appTitle}
           showPersons={this.state.showPersons} 
           persons={this.state.persons} 
           clicked={this.togglePersonsHandler}/>
