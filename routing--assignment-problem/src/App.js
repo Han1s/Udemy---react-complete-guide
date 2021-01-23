@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 import Courses from './containers/Courses/Courses';
 import Users from './containers/Users/Users';
@@ -18,7 +18,7 @@ class App extends Component {
               <Route path='/users'>
                     <Users />
               </Route>
-              <Route path='/'>
+              <Route path='/' exact>
                 <div className="App">
                   <ol style={{textAlign: 'left'}}>
                     <li>Add Routes to load "Users" and "Courses" on different pages (by entering a URL, without Links)</li>
@@ -32,6 +32,8 @@ class App extends Component {
                   </ol>
                 </div>
               </Route>
+              <Redirect from="/all-courses" to="/courses" />
+              <Route render={() => <h1>Not found</h1>}/>
             </Switch>
           </div>
       </Router>

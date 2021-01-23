@@ -14,29 +14,28 @@ class Courses extends Component {
     }
 
     render () {
+        console.log(this.props)
         return (
             <div>
-                <Switch>
-                    <Route exact path="/courses">
-                        <h1>Amazing Udemy Courses</h1>
-                        <section className="Courses">
-                            {
-                                this.state.courses.map( course => {
-                                    return (
-                                        <Link 
-                                            key={course.id} 
-                                            to={`courses/${course.id}/${course.title}`} 
-                                            style={{ color: 'inherit', textDecoration: 'inherit'}}
-                                            title={course.title}>
-                                            <article className="Course" key={course.id}>{course.title}</article>
-                                        </Link>
-                                    );
-                                } )
-                            }
-                        </section>
-                    </Route>
-                    <Route path="/courses/:id/:title" component={Course}></Route>
-                </Switch>
+                <Route path="/courses">
+                    <h1>Amazing Udemy Courses</h1>
+                    <section className="Courses">
+                        {
+                            this.state.courses.map( course => {
+                                return (
+                                    <Link 
+                                        key={course.id} 
+                                        to={`${this.props.match.path}/${course.id}/${course.title}`} 
+                                        style={{ color: 'inherit', textDecoration: 'inherit'}}
+                                        title={course.title}>
+                                        <article className="Course" key={course.id}>{course.title}</article>
+                                    </Link>
+                                );
+                            } )
+                        }
+                    </section>
+                </Route>
+                <Route path="/courses/:id/:title" component={Course}></Route>
             </div>
         );
     }
