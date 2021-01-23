@@ -23,7 +23,11 @@ class Courses extends Component {
                             {
                                 this.state.courses.map( course => {
                                     return (
-                                        <Link key={course.id} to={`courses/${course.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                                        <Link 
+                                            key={course.id} 
+                                            to={`courses/${course.id}/${course.title}`} 
+                                            style={{ color: 'inherit', textDecoration: 'inherit'}}
+                                            title={course.title}>
                                             <article className="Course" key={course.id}>{course.title}</article>
                                         </Link>
                                     );
@@ -31,7 +35,7 @@ class Courses extends Component {
                             }
                         </section>
                     </Route>
-                    <Route path="/courses/:id" component={Course}></Route>
+                    <Route path="/courses/:id/:title" component={Course}></Route>
                 </Switch>
             </div>
         );
