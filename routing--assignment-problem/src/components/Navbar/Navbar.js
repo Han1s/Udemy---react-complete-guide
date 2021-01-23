@@ -1,6 +1,6 @@
 import React from 'react';
-import classes from './Navbar.css';
 import { NavLink } from 'react-router-dom';
+import './Navbar.css';
 
 const navbar = () => (
     <div className='topnav'>
